@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,13 +10,10 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -63,21 +60,21 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(400, 300);
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         bootTriggerButton = new QPushButton(centralWidget);
-        bootTriggerButton->setObjectName(QStringLiteral("bootTriggerButton"));
+        bootTriggerButton->setObjectName(QString::fromUtf8("bootTriggerButton"));
         bootTriggerButton->setAutoFillBackground(false);
-        bootTriggerButton->setStyleSheet(QStringLiteral(""));
+        bootTriggerButton->setStyleSheet(QString::fromUtf8(""));
         bootTriggerButton->setCheckable(true);
         bootTriggerButton->setChecked(false);
         bootTriggerButton->setFlat(false);
@@ -85,12 +82,14 @@ public:
         horizontalLayout_4->addWidget(bootTriggerButton);
 
         bootModeSelector = new QComboBox(centralWidget);
-        bootModeSelector->setObjectName(QStringLiteral("bootModeSelector"));
+        bootModeSelector->addItem(QString());
+        bootModeSelector->addItem(QString());
+        bootModeSelector->setObjectName(QString::fromUtf8("bootModeSelector"));
 
         horizontalLayout_4->addWidget(bootModeSelector);
 
         progressBar = new QProgressBar(centralWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setMaximum(100);
         progressBar->setValue(0);
         progressBar->setTextVisible(true);
@@ -103,7 +102,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
         line = new QFrame(centralWidget);
-        line->setObjectName(QStringLiteral("line"));
+        line->setObjectName(QString::fromUtf8("line"));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
 
@@ -111,17 +110,17 @@ public:
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         filePathEdit = new QLineEdit(centralWidget);
-        filePathEdit->setObjectName(QStringLiteral("filePathEdit"));
+        filePathEdit->setObjectName(QString::fromUtf8("filePathEdit"));
 
         horizontalLayout->addWidget(filePathEdit);
 
         searchPath = new QPushButton(centralWidget);
-        searchPath->setObjectName(QStringLiteral("searchPath"));
+        searchPath->setObjectName(QString::fromUtf8("searchPath"));
 
         horizontalLayout->addWidget(searchPath);
 
@@ -130,21 +129,21 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
         label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_2->addWidget(label);
 
         comSelector = new QComboBox(centralWidget);
-        comSelector->setObjectName(QStringLiteral("comSelector"));
+        comSelector->setObjectName(QString::fromUtf8("comSelector"));
         comSelector->setMaximumSize(QSize(125, 16777215));
 
         horizontalLayout_2->addWidget(comSelector);
 
         getStatus = new QPushButton(centralWidget);
-        getStatus->setObjectName(QStringLiteral("getStatus"));
+        getStatus->setObjectName(QString::fromUtf8("getStatus"));
 
         horizontalLayout_2->addWidget(getStatus);
 
@@ -153,15 +152,15 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(label_3);
 
         protocolSelector = new QComboBox(centralWidget);
-        protocolSelector->setObjectName(QStringLiteral("protocolSelector"));
+        protocolSelector->setObjectName(QString::fromUtf8("protocolSelector"));
 
         horizontalLayout_5->addWidget(protocolSelector);
 
@@ -170,16 +169,16 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setEnabled(true);
         label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(label_2);
 
         pageSizeSpin = new QSpinBox(centralWidget);
-        pageSizeSpin->setObjectName(QStringLiteral("pageSizeSpin"));
+        pageSizeSpin->setObjectName(QString::fromUtf8("pageSizeSpin"));
         pageSizeSpin->setEnabled(true);
         pageSizeSpin->setMaximum(1024);
         pageSizeSpin->setValue(128);
@@ -197,18 +196,18 @@ public:
         verticalLayout->addItem(verticalSpacer);
 
         flashButton = new QPushButton(centralWidget);
-        flashButton->setObjectName(QStringLiteral("flashButton"));
+        flashButton->setObjectName(QString::fromUtf8("flashButton"));
 
         verticalLayout->addWidget(flashButton);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setEnabled(false);
         menuBar->setGeometry(QRect(0, 0, 400, 21));
         MainWindow->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
@@ -221,20 +220,18 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MEMO ECU Flasher", 0));
-        bootTriggerButton->setText(QApplication::translate("MainWindow", "Boot mode", 0));
-        bootModeSelector->clear();
-        bootModeSelector->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Normal", 0)
-         << QApplication::translate("MainWindow", "Bridge", 0)
-        );
-        filePathEdit->setPlaceholderText(QApplication::translate("MainWindow", "Path to *.hex flash file", 0));
-        searchPath->setText(QApplication::translate("MainWindow", "Search", 0));
-        label->setText(QApplication::translate("MainWindow", "Select COM port:", 0));
-        getStatus->setText(QApplication::translate("MainWindow", "Get status", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Protocol:", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Page size:", 0));
-        flashButton->setText(QApplication::translate("MainWindow", "Flash!", 0));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MEMO ECU Flasher", nullptr));
+        bootTriggerButton->setText(QCoreApplication::translate("MainWindow", "Boot mode", nullptr));
+        bootModeSelector->setItemText(0, QCoreApplication::translate("MainWindow", "Normal", nullptr));
+        bootModeSelector->setItemText(1, QCoreApplication::translate("MainWindow", "Bridge", nullptr));
+
+        filePathEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "Path to *.hex flash file", nullptr));
+        searchPath->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Select COM port:", nullptr));
+        getStatus->setText(QCoreApplication::translate("MainWindow", "Get status", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Protocol:", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Page size:", nullptr));
+        flashButton->setText(QCoreApplication::translate("MainWindow", "Flash!", nullptr));
     } // retranslateUi
 
 };

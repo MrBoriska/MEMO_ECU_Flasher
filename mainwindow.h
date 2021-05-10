@@ -7,6 +7,7 @@
 #include <QFile>
 #include <inttypes.h>
 #include <QTextStream>
+#include <QSettings>
 
 #include "config.h"
 #include "flasher.h"
@@ -50,6 +51,7 @@ signals:
 private:
     Ui::MainWindow *ui;
     Flasher *flasher;
+    QSettings settings;
 
     void fillPortsInfo();
     void set_flash_file_url(QString filename, bool update_settings=true);

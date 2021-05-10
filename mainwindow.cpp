@@ -14,13 +14,15 @@
 
 #include <QDragEnterEvent>
 #include <QMimeData>
-#include <QSettings>
 
 #include <QtSerialPort/QSerialPortInfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    settings(QSettings::IniFormat, QSettings::UserScope,
+             QCoreApplication::organizationName(),QCoreApplication::applicationName(),
+             this)
 {
     // инициализация класса прошивальщика
     this->flasher = new Flasher();
@@ -32,9 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->connect(flasher, &Flasher::infoDebug, this, &MainWindow::infoDebug);
 
     //QSettings settings(this);
-    //QVariant port_index = settings.value("port_index", 0);
-    //QVariant protocol_index = settings.value("protocol_index", 0);
-    //QVariant hex_file_path = settings.value("hex_file_path");
+    QVariant port_index = settings.value("port_index", 0);
+    QVariant protocol_index = settings.value("protocol_index", 0);
+    QVariant boot_mode_index = settings.value("boot_mode_index", 0);
+    QVariant hex_file_path = settings.value("hex_file_path", "");
 
     // Конфигурирование GUI
     ui->setupUi(this);
@@ -61,13 +64,19 @@ MainWindow::MainWindow(QWidget *parent) :
     fillPortsInfo();
 
     // Установка сохраненных значений
-    //if (ui->comSelector->count() > port_index.toInt())
-    //    // todo: необходимо сохранять не номер пункта, а номер порта
-    //    ui->comSelector->setCurrentIndex(port_index.toInt());
-    //if (ui->protocolSelector->count() > protocol_index.toInt())
-    //    ui->protocolSelector->setCurrentIndex(protocol_index.toInt());
-    //if (hex_file_path.isValid() && !hex_file_path.toString().isEmpty())
-    //    this->set_flash_file_url(hex_file_path.toString(), false);
+    if (ui->comSelector->count() > port_index.toInt()) {
+        // todo: необходимо сохранять не номер пункта, а номер порта
+        ui->comSelector->setCurrentIndex(port_index.toInt());
+    }
+    if (ui->protocolSelector->count() > protocol_index.toInt()) {
+        ui->protocolSelector->setCurrentIndex(protocol_index.toInt());
+    }
+    if (ui->bootModeSelector->count() > boot_mode_index.toInt()) {
+        ui->bootModeSelector->setCurrentIndex(boot_mode_index.toInt());
+    }
+    if (hex_file_path.isValid() && !hex_file_path.toString().isEmpty()) {
+        this->set_flash_file_url(hex_file_path.toString(), false);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -279,22 +288,20 @@ void MainWindow::infoDebug(QString info)
 
 void MainWindow::on_comSelector_currentIndexChanged(int index)
 {
-    //QSettings settings(this);
-    //settings.setValue("port_index", index);
-
     flasher->setPortName(
         ui->comSelector->itemData(index).toList()[0].toString()
     );
+
+    settings.setValue("port_index", index);
 }
 
 void MainWindow::on_protocolSelector_currentIndexChanged(int index)
 {
-    //QSettings settings(this);
-    //settings.setValue("protocol_index", index);
-
     flasher->setProtocol(
         ui->protocolSelector->itemData(index).value<Flasher::PROTOCOLS>()
     );
+
+    settings.setValue("protocol_index", index);
 }
 
 void MainWindow::on_bootModeSelector_currentIndexChanged(int index)
@@ -302,6 +309,8 @@ void MainWindow::on_bootModeSelector_currentIndexChanged(int index)
     flasher->setBootMode(
         ui->bootModeSelector->itemData(index).value<Flasher::BOOT_MODE>()
     );
+
+    settings.setValue("boot_mode_index", index);
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
