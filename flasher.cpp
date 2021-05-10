@@ -392,18 +392,18 @@ bool Flasher::go_boot() {
     }
 
     if (this->protocol_type == CAN_STYLE_PROTO) {
-        qDebug() << "syncing...";
-        char data_[] = {'F'};
-        serial->write((char*)data_,1);
-        serial->waitForBytesWritten(10000);
-        while(serial->waitForReadyRead(1000));
-        qDebug() << serial->readAll();
-
+        //qDebug() << "syncing...";
+        //char data_[] = {'F'};
+        //serial->write((char*)data_,1);
+        //serial->waitForBytesWritten(10000);
+        //while(serial->waitForReadyRead(1000));
+        //qDebug() << serial->readAll();
+        serial->flush();
         qDebug() << "send command...";
         if (this->boot_mode == BRIDGE_MODE) {
             // table 0x01 - config table
             // table_offset 0x19 - options field in config table
-            //               {      size, type, CANID, table, tbl_offset,   tbl_size, mode,                  crc32}
+            //               {      size 2byte, type, CANID, table 2 byte, tbl_offset 2 byte,   tbl_size, mode,                  crc32}
             uint8_t data[] = {0x00, 0x08, 0x77,  0x00,  0x01, 0x00, 0x19, 0x00, 0x01, 0x02, 0xd2, 0xef, 0xdc, 0x3d};
             serial->write((char*)data,14);
         } else {
@@ -534,28 +534,26 @@ QString Flasher::get_status(bool open_serial) {
 
     char data[] = {0x53, 0x0d}; // специально добавлен ненужный символ в конец,
                                 // чтобы мк ругнулся на него последним символом в ответе
-    serial->write((char*)data,2);
+    serial->flush();
+    serial->write((char*)data,sizeof(data));
     serial->waitForBytesWritten(10000);
     qDebug() << "msg sent...";
 
     QByteArray recv;
+    recv.clear();
     while (serial->waitForReadyRead(2000)) {
         qDebug() << "...";
         recv.append(serial->readAll());
-        if (recv.size() && recv.at(recv.size()-1) == '?') { // этим символом мк ругается
-                                                            // и заодно говорит, что закончил отправку :)
-            recv.remove(recv.size()-1,1); // удалим его из вывода
+        if (recv.size() && recv.at(recv.size()-1) == '?')
+        {
             qDebug() << "success! " << recv;
             if (open_serial) this->closeSerialPort();
             emit changeProgress(0);
             return recv;
         }
     }
-    if (recv.size() > 0) {
-        qDebug() << "recieve without end symbol: " << recv;
-    }
 
-    qDebug() << "no data!";
+    qDebug() << "no data";
     if (open_serial) this->closeSerialPort();
     emit changeProgress(0);
     return "no data";
